@@ -86,7 +86,7 @@ CentOS、Fedora 和 Arch Linux 请自测，已做兼容处理，未测试，并�
    或者，也可以克隆整个仓库：
 
    ```bash
-   git clone https://github.com/SuperNG6/linux-setup.sh.git
+   git clone https://github.com/lldiot/linux-setup.sh.git
    ```
 
 3. 给脚本文件添加执行权限：
