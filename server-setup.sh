@@ -608,7 +608,7 @@ install_xanmod_kernel() {
         y|Y)
             echo "正在从GitHub下载XanMod内核..."
             echo "XanMod内核官网 https://xanmod.org"
-            echo "内核来自 https://sourceforge.net/projects/xanmod/files/releases/lts/"
+            echo "内核来自 https://sourceforge.net/projects/xanmod/files/releases/main/"
 
             # 创建临时文件夹
             temp_folder=$(mktemp -d)
