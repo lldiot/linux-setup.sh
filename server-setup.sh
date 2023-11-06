@@ -243,7 +243,7 @@ add_docker_tools() {
             mkdir -p "$tools_folder"
 
             # 下载dlogs.sh脚本
-            wget -qO "$tools_folder/dlogs.sh" "https://raw.githubusercontent.com/SuperNG6/linux-setup.sh/main/dlogs.sh"
+            wget -qO "$tools_folder/dlogs.sh" "https://raw.githubusercontent.com/lldiot/linux-setup.sh/main/dlogs.sh"
             if [ $? -eq 0 ]; then
                 chmod +x "$tools_folder/dlogs.sh"
                 echo "dlogs.sh脚本已下载并添加到 $tools_folder 文件夹。"
@@ -252,7 +252,7 @@ add_docker_tools() {
             fi
 
             # 下载dcip.sh脚本
-            wget -qO "$tools_folder/dcip.sh" "https://raw.githubusercontent.com/SuperNG6/linux-setup.sh/main/dcip.sh"
+            wget -qO "$tools_folder/dcip.sh" "https://raw.githubusercontent.com/lldiot/linux-setup.sh/main/dcip.sh"
             if [ $? -eq 0 ]; then
                 chmod +x "$tools_folder/dcip.sh"
                 echo "dcip.sh脚本已下载并添加到 $tools_folder 文件夹。"
@@ -593,7 +593,7 @@ install_xanmod_kernel() {
     echo "当前内核版本：$(uname -r)"
 
     # 检查 CPU 支持的指令集级别
-    cpu_support_info=$(/usr/bin/awk -f <(wget -qO - https://raw.githubusercontent.com/SuperNG6/linux-setup.sh/main/check_x86-64_psabi.sh))
+    cpu_support_info=$(/usr/bin/awk -f <(wget -qO - https://raw.githubusercontent.com/lldiot/linux-setup.sh/main/check_x86-64_psabi.sh))
     if [[ $cpu_support_info == "CPU supports x86-64-v"* ]]; then
         cpu_support_level=${cpu_support_info#CPU supports x86-64-v}
         echo "你的CPU支持XanMod内核，级别为 x86-64-v$cpu_support_level"
@@ -617,22 +617,22 @@ install_xanmod_kernel() {
             # 根据CPU支持级别选择下载的内核
             case $cpu_support_level in
                 2)
-                    headers_file="linux-headers-6.1.46-x64v2-xanmod1_6.1.46-x64v2-xanmod1-0.20230816.g11dcd23_amd64.deb"
-                    image_file="linux-image-6.1.46-x64v2-xanmod1_6.1.46-x64v2-xanmod1-0.20230816.g11dcd23_amd64.deb"
-                    headers_md5="45c85d1bcb07bf171006a3e34b804db0"
-                    image_md5="63c359cef963a2e9f1b7181829521fc3"
+                    headers_file="linux-headers-6.5.10-x64v2-xanmod1_6.5.10-x64v2-xanmod1-0~20231102.g537eb9e_amd64.deb"
+                    image_file="linux-image-6.5.10-x64v2-xanmod1_6.5.10-x64v2-xanmod1-0~20231102.g537eb9e_amd64.deb"
+                    headers_md5="5398a14ddec7964801f6e011b063f867"
+                    image_md5="225665d59d532157d5ac7dbabcdbe18b"
                     ;;
                 3)
-                    headers_file="linux-headers-6.1.46-x64v3-xanmod1_6.1.46-x64v3-xanmod1-0.20230816.g11dcd23_amd64.deb"
-                    image_file="linux-image-6.1.46-x64v3-xanmod1_6.1.46-x64v3-xanmod1-0.20230816.g11dcd23_amd64.deb"
-                    headers_md5="6ae3e253a8aeabd80458df4cb4da70cf"
-                    image_md5="d6ea43a2a6686b86e0ac23f800eb95a4"
+                    headers_file="linux-headers-6.5.10-x64v3-xanmod1_6.5.10-x64v3-xanmod1-0~20231102.g537eb9e_amd64.deb"
+                    image_file="linux-image-6.5.10-x64v3-xanmod1_6.5.10-x64v3-xanmod1-0~20231102.g537eb9e_amd64.deb"
+                    headers_md5="50316077f67dc0609171929e55561fe6"
+                    image_md5="f5a4a9e988d533598e0c5f5b9c673011"
                     ;;
                 4)
-                    headers_file="linux-headers-6.1.46-x64v4-xanmod1_6.1.46-x64v4-xanmod1-0.20230816.g11dcd23_amd64.deb"
-                    image_file="linux-image-6.1.46-x64v4-xanmod1_6.1.46-x64v4-xanmod1-0.20230816.g11dcd23_amd64.deb"
-                    headers_md5="9c41a4090a8068333b7dd56b87dd01df"
-                    image_md5="7d30eef4b9094522fc067dc19f7cc92e"
+                    headers_file="linux-headers-6.5.10-x64v4-xanmod1_6.5.10-x64v4-xanmod1-0.20231102.g537eb9e_amd64.deb"
+                    image_file="linux-image-6.5.10-x64v4-xanmod1_6.5.10-x64v4-xanmod1-0~20231102.g537eb9e_amd64.deb"
+                    headers_md5="7cdab05efac11acd9185a36f37644bbe"
+                    image_md5="e28a497d1a0f97cf5aca071c9d02935d"
                     ;;
                 *)
                     echo "你的CPU不受XanMod内核支持，无法安装。"
@@ -641,8 +641,8 @@ install_xanmod_kernel() {
             esac
 
             # 下载内核文件
-            wget "https://github.com/SuperNG6/linux-setup.sh/releases/download/0816/$headers_file"
-            wget "https://github.com/SuperNG6/linux-setup.sh/releases/download/0816/$image_file"
+            wget "https://github.com/lldiot/linux-setup.sh/releases/download/1102/$headers_file"
+            wget "https://github.com/lldiot/linux-setup.sh/releases/download/1102/$image_file"
 
             # 校验 MD5 值
             if [ "$(md5sum $headers_file | awk '{print $1}')" != "$headers_md5" ]; then
@@ -913,7 +913,7 @@ display_menu() {
 
     clear
     echo -e "${BOLD}欢迎使用 SuperNG6 的 Linux 配置工具${RESET}"
-    echo -e "${BOLD}GitHub：https://github.com/SuperNG6/linux-setup.sh${RESET}"
+    echo -e "${BOLD}GitHub：https://github.com/lldiot/linux-setup.sh${RESET}"
     # 在一行上显示当前CPU使用率、内存使用率、Linux发行版本和内核版本，并使用预定义的颜色和样式
     echo -e "${BOLD}-----------------------------------"
     echo -e "当前Linux发行版本：${GREEN}${BOLD}${linux_version}${RESET}"
